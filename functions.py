@@ -26,10 +26,10 @@ def acumValues(pieValues, labels):
     fig, ax = plt.subplots()
     # Dibujar puntos
     ax.set_title('Hackers to the long of the time', loc = "left", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:blue'})
-    
+    # Set the values of the grafic
     ax.pie(pieValues)
+    # Put the legends location, position and labels
     ax.legend(loc = 'best', bbox_to_anchor=(-0.45, -0.5, 0.5, 1), labels = labels)
-    
     # Guardar el gráfico en formato png
     plt.savefig('diagrama-hackers.png')
     # Mostrar el gráfico
