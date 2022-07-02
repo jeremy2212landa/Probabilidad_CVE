@@ -1,9 +1,15 @@
+#from distutils.log import info
+from functions import *
 #import requests as rq
-import re
+#import re
 #import pandas as pd
 #import numpy as np
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
+# ------------------------------------------------------------------------------
+#df = pd.read_csv("email.csv")
+
+#df.info()
 
 # REGEX 
 # Programa que va a sacar la probabilidad de 
@@ -15,8 +21,13 @@ import re
 # (V)*(White/V) = 
 #
 # p(hackersPerCountry / country) = p(cvss) x p(hackersPerCountry|cvss) 
-#                                                     p(totalPersonsPerCountryOnInternet)
+#                                 p(totalPersonsPerCountryOnInternet)
 
+usersInternet = 1.00 # 100% People on internet.
+cvss = 0.78
+
+
+#df.info()
 
 hackers_in_2016 = {
     'China':0.41,
@@ -31,44 +42,52 @@ hackers_in_2016 = {
     'Hong Kong':0.013
 }
 
-users_in_internet =  {
-    'China':0.0142,
-    'United States':0.0044,
-    'Taiwan':0.0003,
-    'Russia':0.0017,
-    'Turkey':0.0010,
-    'South Korea':0.0007,
-    'India':0.0117,
-    'Brazil':0.0023,
-    'Germany':0.0011,
-    'Hong Kong':0.0001
-}
-
-
+# This data, i think that isn't necessary 
+# """
+# users_in_internet =  {
+#     'China':0.0142,
+#     'United States':0.0044,
+#     'Taiwan':0.0003,
+#     'Russia':0.0017,
+#     'Turkey':0.0010,
+#     'South Korea':0.0007,
+#     'India':0.0117,
+#     'Brazil':0.0023,
+#     'Germany':0.0011,
+#     'Hong Kong':0.0001
+# }
+# """
 
 # tables of avg from country that use internet
 # https://en.wikipedia.org/wiki/List_of_countries_by_number_of_Internet_users 
 
 # Calcules necessaries for the calule the percentage of people per country
 
-usersInternet = 7100000000000 # 100% People on internet.
-totalUsersInRussia = 124000000 # Total users on internet from Russia.
+#tables of hackers come from country 
+# https://www.cyberkite.com.au/post/hackers-top-10-countries-where-they-come-from-hacker-types
+
 
 # 100% -------> usersInternet
 #   X  <-------- totalUserInRusssia
 
 ## RUSSIA  
-
-cvss = 0.12
-hackersPerCountry = 0.78 
-totalPersonsPerCountryOnInternet = totalUsersInRussia * 100 / usersInternet  #The people in internet on Russia expressed by probability
+ #Dates that will be get by a file .cvs
+#totalPersonsPerCountryOnInternet = totalUsersInRussia * 100 / usersInternet  
+#The people in internet on Russia expressed by probability
 
 # p(hackersPerCountry / country) = p(cvss) x p(hackersPerCountry|cvss) 
-#                                                     p(totalPersonsPerCountryOnInternet)
+#                                  p(totalPersonsPerCountryOnInternet)
 
-p = (cvss * hackers_in_2016['Russia']) / users_in_internet['Russia']
 
-print (f'tu sistema es probable que sea hackeado por un hacker ruso un {p}')
 
-## /RUSSIA
-#print (f'El resultado de esta verga es {totalPersonsPerCountryOnInternet}')
+#Example for the function probability(i, v, r)
+dobleArray = probability(hackers_in_2016, cvss, usersInternet)
+#print(dobleArray[0])
+#print(dobleArray[1])
+acumValues(dobleArray[0], dobleArray[1])
+
+
+
+
+
+
