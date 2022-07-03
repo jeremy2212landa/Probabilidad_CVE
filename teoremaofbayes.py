@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 #                                 p(totalPersonsPerCountryOnInternet)
 
 usersInternet = 1.00 # 100% People on internet.
-cvss = 0.78
+cvss = 0.25
 
 
 #df.info()
@@ -79,13 +79,13 @@ hackers_in_2016 = {
 #                                  p(totalPersonsPerCountryOnInternet)
 
 
-
 #Example for the function probability(i, v, r)
 dobleArray = probability(hackers_in_2016, cvss, usersInternet)
+
+print(dobleArray)
 #print(dobleArray[0])
 #print(dobleArray[1])
-acumValues(dobleArray[0], dobleArray[1])
-
+acumValues(dobleArray[0], dobleArray[1], cvss)
 
 
 
