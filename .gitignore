@@ -2,3 +2,4 @@
 CVE.csv
 reports/*
 diagrama-hackers.png
+__pycache__/*

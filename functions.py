@@ -6,7 +6,6 @@ def probability(hackers_in_2016, cvss, usersInternet):
     
     valuesHackers = []
     valuesCountries = []
-    percentages = []
     others = 0
     
     for index in hackers_in_2016:
@@ -90,8 +89,5 @@ def kinter(hackers_in_2016, usersInternet):
 
 
 
-
-
-
-
+    #Run the loop
     root.mainloop()
