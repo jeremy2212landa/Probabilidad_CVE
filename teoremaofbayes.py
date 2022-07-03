@@ -1,33 +1,11 @@
-#from distutils.log import info
 from functions import *
+import matplotlib.pyplot as plt
+import tkinter
+#from distutils.log import info
 #import requests as rq
 #import re
 #import pandas as pd
 #import numpy as np
-import matplotlib.pyplot as plt
-
-# ------------------------------------------------------------------------------
-#df = pd.read_csv("email.csv")
-
-#df.info()
-
-# REGEX 
-# Programa que va a sacar la probabilidad de 
-# {Entro} Probabilidad de que un usuario entre a nuestra pagina (1.0006%) == 0.010006
-# {Vulnerabilidad} Probabilidad de que un usuario encuentre una vulnerabilidad del (78%) == 0.78
-# probabilidad de que alguien haga fuzzing, comunmento el {12%} hace fuzzing
-# cual seria la probabilidad de que un usuario encuentre una vulnerabilidad, dado que
-#que ha entrado en nuestra pagina
-# (V)*(White/V) = 
-#
-# p(hackersPerCountry / country) = p(cvss) x p(hackersPerCountry|cvss) 
-#                                 p(totalPersonsPerCountryOnInternet)
-
-usersInternet = 1.00 # 100% People on internet.
-cvss = 0.25
-
-
-#df.info()
 
 hackers_in_2016 = {
     'China':0.41,
@@ -41,6 +19,18 @@ hackers_in_2016 = {
     'Germany':0.018,
     'Hong Kong':0.013
 }
+
+usersInternet = 1.00 # 100% People on internet.
+
+
+
+kinter(hackers_in_2016, usersInternet)
+
+
+usersInternet = 1.00 # 100% People on internet.
+#cvss = 0.25
+
+
 
 # This data, i think that isn't necessary 
 # """
@@ -79,13 +69,13 @@ hackers_in_2016 = {
 #                                  p(totalPersonsPerCountryOnInternet)
 
 
-#Example for the function probability(i, v, r)
-dobleArray = probability(hackers_in_2016, cvss, usersInternet)
+# #Example for the function probability(i, v, r)
+# dobleArray = probability(hackers_in_2016, cvss, usersInternet)
 
-print(dobleArray)
-#print(dobleArray[0])
-#print(dobleArray[1])
-acumValues(dobleArray[0], dobleArray[1], cvss)
+# print(dobleArray)
+# #print(dobleArray[0])
+# #print(dobleArray[1])
+# acumValues(dobleArray[0], dobleArray[1], cvss)
 
 
 

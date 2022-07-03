@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import tkinter
 
 def probability(hackers_in_2016, cvss, usersInternet):
     
@@ -27,7 +28,7 @@ def percentage(pct, allvalues):
 
 def acumValues(pieValues, labels, cvss):
     # Creating explode data
-    explode = (0.1, 0.0, 0.2, 0.1, 0.0, 0.2, 0.1, 0.0, 0.2, 0.0, 0.1)
+    explode = (0.1, 0.2, 0.2, 0.2, 0.3, 0.2, 0.3, 0.3, 0.2, 0.3, 0.05)
     # Colors
     colors = ( "orange", "cyan", "brown",
           "grey", "indigo", "beige", "pink")
@@ -35,7 +36,7 @@ def acumValues(pieValues, labels, cvss):
     wp = { 'linewidth' : 1, 'edgecolor' : "green" }
 
     # Crear la figura y los ejes
-    fig, ax = plt.subplots(figsize =(10, 7))
+    fig, ax = plt.subplots(figsize =(10, 6))
     # Dibujar puntos
     ax.set_title("""Propability top 10 that a hacker from 
     these countries hacked you, with a CVSS of: """ + str(cvss), loc = "center", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:blue', 'verticalalignment': 'baseline',})
@@ -50,11 +51,11 @@ def acumValues(pieValues, labels, cvss):
         startangle = 90,
         wedgeprops = wp,)
     # Put the legends location, position and labels
-    ax.legend(loc = 'best', bbox_to_anchor=(-0.6, -0.6, 0.5, 1), labels = labels, title ="Countries")
+    ax.legend(loc = 'best', bbox_to_anchor=(-0.7, -0.5, 0.5, 1), labels = labels, title ="Countries")
     
     # Guardar el gráfico en formato png
     #input = input('Ingrese la ruta de guardado') f'{input}/
-    plt.savefig('reports/diagrama-hackers.png')
+    plt.savefig('diagrama-hackers.png')
     # Mostrar el gráfico
     plt.show()
     
@@ -66,3 +67,31 @@ print(dobleArray[0])
 print(dobleArray[1])
 
 acumValues(dobleArray[0], dobleArray[1]) """
+
+
+def kinter(hackers_in_2016, usersInternet):
+    root = tkinter.Tk()
+
+    root.geometry('400x400')
+    texto = tkinter.Label(root, text = 'CVSS')
+    input = tkinter.Entry(root)
+
+    def obtenerCVSS():
+        cvss = float(input.get())
+        dobleArray = probability(hackers_in_2016, cvss, usersInternet)
+        acumValues(dobleArray[0], dobleArray[1], cvss)
+
+    btn = tkinter.Button(root, text = 'Enter', command = lambda: obtenerCVSS())
+
+    texto.pack()
+    input.pack()
+    btn.pack()
+
+
+
+
+
+
+
+
+    root.mainloop()
