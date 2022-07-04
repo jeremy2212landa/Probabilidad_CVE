@@ -7,7 +7,7 @@ def probability(hackers_in_2016, cvss, usersInternet):
     valuesHackers = []
     valuesCountries = []
     others = 0
-    
+
     for index in hackers_in_2016:
         p = round((cvss * hackers_in_2016[index]) / usersInternet, 4)
         
@@ -30,7 +30,7 @@ def acumValues(pieValues, labels, cvss):
     explode = (0.1, 0.2, 0.2, 0.2, 0.3, 0.2, 0.3, 0.3, 0.2, 0.3, 0.05)
     # Colors
     colors = ( "orange", "cyan", "brown",
-          "grey", "indigo", "beige", "pink")
+          "grey", "indigo", "beige", "pink", "blue", "yellow", "turquoise")
     
     wp = { 'linewidth' : 1, 'edgecolor' : "green" }
 
@@ -44,7 +44,6 @@ def acumValues(pieValues, labels, cvss):
     ax.pie(pieValues,
         autopct = lambda pct: percentage(pct, pieValues),
         explode = explode,
-        labels = labels,
         shadow = True,
         colors = colors,
         startangle = 90,
@@ -67,6 +66,56 @@ print(dobleArray[1])
 
 acumValues(dobleArray[0], dobleArray[1]) """
 
+def probabilityCvss(comunCvss, hacker, hackersIntheWorld):
+    valuesHackers = []
+    valuesCvss = []
+    others = 0
+    
+    for index in comunCvss:
+        p = round((hacker * comunCvss[index]) / hackersIntheWorld, 4)
+        
+        valuesHackers.append(p)
+        valuesCvss.append(index)
+        others = others + p
+        
+    print(hackersIntheWorld - others)   
+    #others = 1.00 - others
+    valuesHackers.append(hackersIntheWorld - others)
+    valuesCvss.append('No')
+    
+    return valuesHackers, valuesCvss
+    
+def acumValues2(plotValues, labels, country='South Korea'):
+    # Creating explode data
+    explode = (0.2, 0.1, 0.2, 0.2, 0.2, 0.1, 0.2, 0.1, 0.2, 0.1, 0.2)
+    # Colors
+    colors = ( "orange", "cyan", "brown",
+          "grey", "indigo", "beige", "pink", "blue", "yellow", "turquoise", "chocolate")
+    
+    wp = { 'linewidth' : 1, 'edgecolor' : "green" }
+
+    # Crear la figura y los ejes
+    fig, ax = plt.subplots(figsize =(15, 10))
+    # Dibujar puntos
+    ax.set_title(f"""Propability that one person from {country} hacked you
+                 take it on acount the propability of earn a error CVSS""", loc = "center", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:blue', 'verticalalignment': 'baseline',})
+    # Set the values of the grafic
+#    ax.pie(pieValues)
+    ax.pie(plotValues,
+        autopct = lambda pct: percentage(pct, plotValues),
+        explode = explode,
+        colors = colors,
+        startangle = 90,
+        wedgeprops = wp,)
+    
+    # Put the legends location, position and labels
+    ax.legend(loc = 'best', bbox_to_anchor=(-0.7, -0.5, 0.5, 1), labels = labels, title ="CVSS")
+    
+    # Guardar el gráfico en formato png
+    #input = input('Ingrese la ruta de guardado') f'{input}/
+    plt.savefig('diagrama-cvss.png')
+    # Mostrar el gráfico
+    plt.show()
 
 def kinter(hackers_in_2016, usersInternet):
     root = tkinter.Tk()

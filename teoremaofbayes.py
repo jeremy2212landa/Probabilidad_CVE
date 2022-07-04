@@ -1,11 +1,4 @@
 from functions import *
-import matplotlib.pyplot as plt
-import tkinter
-#from distutils.log import info
-#import requests as rq
-#import re
-#import pandas as pd
-#import numpy as np
 
 hackers_in_2016 = {
     'China':0.41,
@@ -21,16 +14,28 @@ hackers_in_2016 = {
 }
 
 usersInternet = 1.00 # 100% People on internet.
+hackersIntheWorld = 1.00 # 100% Hackers on the world
 
+comunCvss = {
+    'A01:2021':0.0381,
+    'A02:2021':0.18,
+    'C22:2021':0.4,
+    'F02:2021':0.32,
+    'U02:2021':0.29,
+    'O02:2021':0.28,
+    'E02:2021':0.24,
+    'A52:2021':0.23,
+    'A32:2021':0.18,
+    'A12:2021':0.13
+}
 
+hacker = 0.028
 
-kinter(hackers_in_2016, usersInternet)
+example = probabilityCvss(comunCvss, hacker, hackersIntheWorld)
 
+acumValues2(example[0], example[1])
 
-usersInternet = 1.00 # 100% People on internet.
-#cvss = 0.25
-
-
+#kinter(hackers_in_2016, usersInternet)
 
 # This data, i think that isn't necessary 
 # """
