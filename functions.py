@@ -15,7 +15,7 @@ def probability(hackers_in_2016, cvss, usersInternet):
         valuesCountries.append(index)
         others = others + p
     
-    valuesHackers.append(others)
+    valuesHackers.append(usersInternet - others)
     valuesCountries.append('Others')
       
     return valuesHackers, valuesCountries
@@ -30,12 +30,12 @@ def acumValues(pieValues, labels, cvss):
     explode = (0.1, 0.2, 0.2, 0.2, 0.3, 0.2, 0.3, 0.3, 0.2, 0.3, 0.05)
     # Colors
     colors = ( "orange", "cyan", "brown",
-          "grey", "indigo", "beige", "pink", "blue", "yellow", "turquoise")
+          "grey", "indigo", "beige", "pink", "blue", "yellow", "turquoise", "chocolate")
     
     wp = { 'linewidth' : 1, 'edgecolor' : "green" }
 
     # Crear la figura y los ejes
-    fig, ax = plt.subplots(figsize =(10, 6))
+    fig, ax = plt.subplots(figsize =(15, 10))
     # Dibujar puntos
     ax.set_title("""Propability top 10 that a hacker from 
     these countries hacked you, with a CVSS of: """ + str(cvss), loc = "center", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:blue', 'verticalalignment': 'baseline',})
@@ -85,9 +85,9 @@ def probabilityCvss(comunCvss, hacker, hackersIntheWorld):
     
     return valuesHackers, valuesCvss
     
-def acumValues2(plotValues, labels, country='South Korea'):
+def acumValues2(plotValues, labels, country='China'):
     # Creating explode data
-    explode = (0.2, 0.1, 0.2, 0.2, 0.2, 0.1, 0.2, 0.1, 0.2, 0.1, 0.2)
+    explode = (0.1, 0.2, 0.2, 0.2, 0.3, 0.2, 0.3, 0.3, 0.2, 0.3, 0.05)
     # Colors
     colors = ( "orange", "cyan", "brown",
           "grey", "indigo", "beige", "pink", "blue", "yellow", "turquoise", "chocolate")
@@ -117,10 +117,11 @@ def acumValues2(plotValues, labels, country='South Korea'):
     # Mostrar el gráfico
     plt.show()
 
-def kinter(hackers_in_2016, usersInternet):
+def kinter(hackers_in_2016, usersInternet, comunCvss):
     root = tkinter.Tk()
 
-    root.geometry('400x400')
+    root.geometry('600x600')
+    texto2 = tkinter.Label(root, text = 'Teorema of Bayes In Hacking')
     texto = tkinter.Label(root, text = 'CVSS')
     input = tkinter.Entry(root)
 
@@ -129,11 +130,18 @@ def kinter(hackers_in_2016, usersInternet):
         dobleArray = probability(hackers_in_2016, cvss, usersInternet)
         acumValues(dobleArray[0], dobleArray[1], cvss)
 
-    btn = tkinter.Button(root, text = 'Enter', command = lambda: obtenerCVSS())
+    def obtenerhacker():
+        hacker = float(input.get())
+        dobleArray = probabilityCvss(comunCvss, hacker, usersInternet)
+        acumValues2(dobleArray[0], dobleArray[1])
 
+    btn = tkinter.Button(root, text = 'Probability per cvss', command = lambda: obtenerCVSS())
+    btn2 = tkinter.Button(root, text = 'Probability per country', command = lambda: obtenerhacker())
+    texto2.pack()
     texto.pack()
     input.pack()
     btn.pack()
+    btn2.pack()
 
 
 

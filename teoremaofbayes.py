@@ -29,13 +29,13 @@ comunCvss = {
     'A12:2021':0.13
 }
 
-hacker = 0.028
+#hacker = 0.028
 
-example = probabilityCvss(comunCvss, hacker, hackersIntheWorld)
+#example = probabilityCvss(comunCvss, hacker, hackersIntheWorld)
 
-acumValues2(example[0], example[1])
+#acumValues2(example[0], example[1])
 
-#kinter(hackers_in_2016, usersInternet)
+kinter(hackers_in_2016, usersInternet, comunCvss)
 
 # This data, i think that isn't necessary 
 # """
